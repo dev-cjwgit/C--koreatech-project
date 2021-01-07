@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramCore
 {
-    public class PostEntity
+    public class PostListEntity
     {
         private int _number;
         public int Number

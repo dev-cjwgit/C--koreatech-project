@@ -81,12 +81,12 @@ namespace koreatech_bachelor_Post_Project.Binding.ObjectViewModel
 
         #endregion
 
-        private static ObservableCollection<PostEntity> instance;
+        private static ObservableCollection<PostListEntity> instance;
 
-        public static ObservableCollection<PostEntity> GetInstance()
+        public static ObservableCollection<PostListEntity> GetInstance()
         {
             if (instance == null)
-                instance = new ObservableCollection<PostEntity>();
+                instance = new ObservableCollection<PostListEntity>();
 
             return instance;
         }
@@ -162,11 +162,16 @@ namespace koreatech_bachelor_Post_Project.Binding.ObjectViewModel
                 PageViewModel.GetInstance().MaxPage = value;
             }
         }
-        public static void SetSource(List<PostEntity> src)
+        public static List<PostListEntity> DataList
         {
+            get; set;
+        }
+        public static void SetSource(List<PostListEntity> src)
+        {
+            DataList = src;
             PostListViewModel.GetInstance().Clear();
             for(int i = 0; i < src.Count; i++)
-                PostListViewModel.GetInstance().Add(src[i]);
+                PostListViewModel.GetInstance().Add(DataList[i]);
            
         }
     }

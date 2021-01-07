@@ -30,7 +30,7 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             PostListModel.SetSource(GetPostList(url, 1));
         }
 
-        private List<PostEntity> GetPostList(string url, int page)
+        private List<PostListEntity> GetPostList(string url, int page)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
                 int notice_size = Strings.Split(temp, "alt=\"공지\"").Length - 1; // 공지사항 개수
                 int post_size = Strings.Split(temp, "<td class=\"subject\">").Length - 1; // 페이지당 개시글 개수
                 PostListModel.BoardId = Convert.ToInt32(Strings.Split(Strings.Split(winhttp.ResponseText, "board_id\" value=\"")[1], "\" />")[0]);
-                List<PostEntity> result = new List<PostEntity>();
+                List<PostListEntity> result = new List<PostListEntity>();
                 for (int i = 0; i < post_size; i++)
                 {
                     int number = Convert.ToInt32(Strings.Split(Strings.Split(temp, "<td class=\"num\">")[(i + 1) * 2], "</td>")[0]);
@@ -57,7 +57,7 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
                     string publisher = Strings.Split(Strings.Split(temp, "<td class=\"writer\">")[i + 1], "</td>")[0];
                     int views = Convert.ToInt32(Strings.Split(Strings.Split(temp, "<td class=\"cnt\">")[i + 1], "</td>")[0]);
 
-                    result.Add(new PostEntity()
+                    result.Add(new PostListEntity()
                     {
                         Number = number,
                         Title = title,
@@ -71,7 +71,7 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             }
             catch (Exception ex)
             {
-                return new List<PostEntity>();
+                return new List<PostListEntity>();
             }
         }
         private void PageInit()
@@ -151,6 +151,51 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             {
                 PostListModel.PresentPage += 1;
                 PostListModel.SetSource(GetPostList(url, PostListModel.PresentPage));
+            }
+        }
+
+        private void PostListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            dynamic meta_data = sender as dynamic;
+            if (meta_data.SelectedIndex > -1)
+            {
+                winhttp.Open("GET", "https://www.koreatech.ac.kr/kor/CMS/NoticeMgr/view.do?post_seq=" + PostListModel.DataList[meta_data.SelectedIndex].Number + "&board_id=" + PostListModel.BoardId);
+                winhttp.Send();
+                winhttp.WaitForResponse();
+                PostBodyEntity post = new PostBodyEntity();
+
+                string temp = Strings.Split(Strings.Split(winhttp.ResponseText, "<div id=\"board-wrap\">")[1], "<div  class=\"board-view-more\">")[0];
+                string title = Strings.Split(Strings.Split(temp, "<span style=\"\" title=\"")[1], "\">")[0];
+                string publisher = Strings.Split(Strings.Split(temp, "<span class=\"txt name\">")[1], "</span>")[0];
+                string time = Strings.Split(Strings.Split(temp, "<span class=\"txt\">")[1], "</span>")[0];
+                int views = Convert.ToInt32(Strings.Split(Strings.Split(temp, "<em>조회수 : </em>")[1], "</span>")[0]);
+
+                List<Attachments> list = new List<Attachments>();
+                if (Strings.InStr(temp, "<span class=\"ilbl\">첨부파일</span>") > 0)
+                {
+                    for (int i = 0; i < Strings.Split(temp, "<a href=\"").Length - 1; i++)
+                    {
+                        string save_str = Strings.Split(temp, "<a href=\"")[i + 1];
+                        list.Add(new Attachments()
+                        {
+                            Title = Strings.Split(Strings.Split(save_str, "\">")[1], "</a>")[0],
+                            Url = Strings.Split(save_str, "\">")[0]
+                        });
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                string body = Strings.Split(Strings.Split(temp, "<div class=\"board-view-contents\">")[1], "</div>")[0].Trim() + "</div>";
+
+                post.Title = title;
+                post.Publisher = publisher;
+                post.Time = time;
+                post.Views = views;
+                post.Attachment = list;
+                post.Body = body;
+
             }
         }
     }

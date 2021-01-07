@@ -83,6 +83,7 @@
             </Grid.RowDefinitions>
             <ListView x:Name="PostListView" Grid.Row="0"
                       IsSynchronizedWithCurrentItem="True"
+                      MouseDoubleClick="PostListView_MouseDoubleClick"
                       SizeChanged="PostListView_SizeChanged">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
