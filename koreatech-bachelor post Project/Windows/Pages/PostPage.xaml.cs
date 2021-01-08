@@ -15,7 +15,7 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
     public partial class PostPage : UserControl
     {
         // 70, 0, 115, 190, 70 
-        private double[] basket_auto_size = { 70, 0, 115, 90, 70 };
+        private double[] basket_auto_size = { 60, 0, 95, 90, 50 };
         private WinHttpRequest winhttp;
         private string url;
         public PostPage()
@@ -73,6 +73,48 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             {
                 return new List<PostListEntity>();
             }
+        }
+
+        private PostBodyEntity GetPostBody(int number, int boardid)
+        {
+            winhttp.Open("GET", "https://www.koreatech.ac.kr/kor/CMS/NoticeMgr/view.do?post_seq=" + number + "&board_id=" + boardid);
+            winhttp.Send();
+            winhttp.WaitForResponse();
+            PostBodyEntity post = new PostBodyEntity();
+
+            string temp = Strings.Split(Strings.Split(winhttp.ResponseText, "<div id=\"board-wrap\">")[1], "<div  class=\"board-view-more\">")[0];
+            string title = Strings.Split(Strings.Split(temp, "<span style=\"\" title=\"")[1], "\">")[0];
+            string publisher = Strings.Split(Strings.Split(temp, "<span class=\"txt name\">")[1], "</span>")[0];
+            string time = Strings.Split(Strings.Split(temp, "<span class=\"txt\">")[1], "</span>")[0];
+            int views = Convert.ToInt32(Strings.Split(Strings.Split(temp, "<em>조회수 : </em>")[1], "</span>")[0]);
+
+            List<Attachments> list = new List<Attachments>();
+            if (Strings.InStr(temp, "<span class=\"ilbl\">첨부파일</span>") > 0)
+            {
+                for (int i = 0; i < Strings.Split(temp, "<a href=\"").Length - 1; i++)
+                {
+                    string save_str = Strings.Split(temp, "<a href=\"")[i + 1];
+                    list.Add(new Attachments()
+                    {
+                        Title = Strings.Split(Strings.Split(save_str, "\">")[1], "</a>")[0],
+                        Url = Strings.Split(save_str, "\">")[0]
+                    });
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            string body = Strings.Split(Strings.Split(temp, "<div class=\"board-view-contents\">")[1], "</div>")[0].Trim() + "</div>";
+
+            post.Title = title;
+            post.Publisher = publisher;
+            post.Time = time;
+            post.Views = views;
+            post.Attachment = list;
+            post.Bodys = "<html><HEAD><meta http-equiv='Content-Type' content='text/html;charset=UTF-8'></HEAD>" + body + "</html>";
+
+            return post;
         }
         private void PageInit()
         {
@@ -159,43 +201,8 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             dynamic meta_data = sender as dynamic;
             if (meta_data.SelectedIndex > -1)
             {
-                winhttp.Open("GET", "https://www.koreatech.ac.kr/kor/CMS/NoticeMgr/view.do?post_seq=" + PostListModel.DataList[meta_data.SelectedIndex].Number + "&board_id=" + PostListModel.BoardId);
-                winhttp.Send();
-                winhttp.WaitForResponse();
-                PostBodyEntity post = new PostBodyEntity();
-
-                string temp = Strings.Split(Strings.Split(winhttp.ResponseText, "<div id=\"board-wrap\">")[1], "<div  class=\"board-view-more\">")[0];
-                string title = Strings.Split(Strings.Split(temp, "<span style=\"\" title=\"")[1], "\">")[0];
-                string publisher = Strings.Split(Strings.Split(temp, "<span class=\"txt name\">")[1], "</span>")[0];
-                string time = Strings.Split(Strings.Split(temp, "<span class=\"txt\">")[1], "</span>")[0];
-                int views = Convert.ToInt32(Strings.Split(Strings.Split(temp, "<em>조회수 : </em>")[1], "</span>")[0]);
-
-                List<Attachments> list = new List<Attachments>();
-                if (Strings.InStr(temp, "<span class=\"ilbl\">첨부파일</span>") > 0)
-                {
-                    for (int i = 0; i < Strings.Split(temp, "<a href=\"").Length - 1; i++)
-                    {
-                        string save_str = Strings.Split(temp, "<a href=\"")[i + 1];
-                        list.Add(new Attachments()
-                        {
-                            Title = Strings.Split(Strings.Split(save_str, "\">")[1], "</a>")[0],
-                            Url = Strings.Split(save_str, "\">")[0]
-                        });
-                    }
-                }
-                else
-                {
-                    list = null;
-                }
-                string body = Strings.Split(Strings.Split(temp, "<div class=\"board-view-contents\">")[1], "</div>")[0].Trim() + "</div>";
-
-                post.Title = title;
-                post.Publisher = publisher;
-                post.Time = time;
-                post.Views = views;
-                post.Attachment = list;
-                post.Body = body;
-
+                PostBodyWindow window = new PostBodyWindow(new PostBodyViewModel(GetPostBody(PostListModel.DataList[meta_data.SelectedIndex].Number, PostListModel.BoardId)));
+                window.Show();
             }
         }
     }

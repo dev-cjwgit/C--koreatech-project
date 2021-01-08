@@ -1,13 +1,16 @@
-﻿using System;
+﻿using ProgramCore;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramCore
+namespace koreatech_bachelor_Post_Project.Binding.ObjectViewModel
 {
-    public class Attachments
+    public class PostBodyViewModel : NotifyPropertyChanged
     {
+        #region Model
         private string _title;
         public string Title
         {
@@ -18,34 +21,7 @@ namespace ProgramCore
             set
             {
                 _title = value;
-            }
-        }
-
-        private string _url;
-        public string Url
-        {
-            get
-            {
-                return _url;
-            }
-            set
-            {
-                _url = value;
-            }
-        }
-    }
-    public class PostBodyEntity
-    {
-        private string _title;
-        public string Title
-        {
-            get
-            {
-                return _title;
-            }
-            set
-            {
-                _title = value;
+                OnPropertyChanged("Title");
             }
         }
 
@@ -59,6 +35,7 @@ namespace ProgramCore
             set
             {
                 _publisher = value;
+                OnPropertyChanged("Publisher");
             }
         }
 
@@ -72,6 +49,8 @@ namespace ProgramCore
             set
             {
                 _time = value;
+                OnPropertyChanged("Time");
+
             }
         }
 
@@ -85,11 +64,13 @@ namespace ProgramCore
             set
             {
                 _views = value;
+                OnPropertyChanged("Views");
+
             }
         }
 
-        private List<Attachments> _attachment;
-        public List<Attachments> Attachment
+        private ObservableCollection<Attachments> _attachment;
+        public ObservableCollection<Attachments> Attachment
         {
             get
             {
@@ -111,7 +92,30 @@ namespace ProgramCore
             set
             {
                 _bodys = value;
+                OnPropertyChanged("Bodys");
             }
+        }
+        #endregion
+
+        public PostBodyViewModel() { }
+        public PostBodyViewModel(PostBodyEntity src)
+        {
+            instance = new PostBodyViewModel();
+            instance.Title = src.Title;
+            instance.Publisher = src.Publisher;
+            instance.Time = src.Time;
+            instance.Views = src.Views;
+            if(src.Attachment != null)
+                instance.Attachment = new ObservableCollection<Attachments>(src.Attachment);
+            instance.Bodys = src.Bodys;
+        }
+        private PostBodyViewModel instance;
+
+        public PostBodyViewModel GetInstance()
+        {
+            if (instance == null)
+                instance = new PostBodyViewModel();
+            return instance;
         }
     }
 }

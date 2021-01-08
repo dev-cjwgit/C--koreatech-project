@@ -26,7 +26,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBox x:Name="NameTextBox" Grid.Row="0" 
+                <TextBox x:Name="IdTextBox" Grid.Row="0" 
                     Height="30" Width="auto" Margin="0" VerticalAlignment="Bottom"
                     materialDesign:HintAssist.Hint="아이디를 입력해주세요.">
                     <TextBox.Text>
@@ -35,13 +35,13 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <PasswordBox x:Name="PasswordBox" Grid.Row="1"
+                <PasswordBox x:Name="PwTextBox" Grid.Row="1"
                     Height="40" Width="auto" Margin="0"
                     materialDesign:HintAssist.Hint="비밀번호를 입력해주세요."
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     materialDesign:HintAssist.HelperText="" />
 
-                <Button Grid.Row="2"
+                <Button Grid.Row="2" Click="LoginButton_Click"
                     Width="auto" Height="40" Margin="0" VerticalAlignment="Top"
                     Style="{StaticResource BasedTextButtonStyle}"
                     Content="로그인"

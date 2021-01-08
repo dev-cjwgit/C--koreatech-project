@@ -88,7 +88,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalAlignment" Value="Left"/>
-                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontSize" Value="13"/>
                         <Style.Triggers>
                             
                             <Trigger Property="IsSelected" Value="True">
@@ -104,7 +104,7 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="제목" Width="auto"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="등록일" Width="auto"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Publisher}" Header="작성자" Width="auto"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Views}" Header="조회수" Width="auto"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Views}" Header="조회" Width="auto"/>
                     </GridView>
                 </ListView.View>
             </ListView>

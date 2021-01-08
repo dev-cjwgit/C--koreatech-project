@@ -64,13 +64,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Binding\ObjectViewModel\PostBodyViewModel.cs" />
     <Compile Include="Binding\ObjectViewModel\PostListViewModel.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlCssParser.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlFromXamlConverter.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlParser.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlSchema.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlTokenType.cs" />
+    <Compile Include="Windows\HtmlConverter\HtmlToXamlConverter.cs" />
+    <Compile Include="Windows\HtmlRichTextBoxBehavior.cs" />
     <Compile Include="Windows\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Pages\PostPage.xaml.cs">
       <DependentUpon>PostPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PostBodyWindow.xaml.cs">
+      <DependentUpon>PostBodyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WebBrowserHelper.cs" />
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Pages\PostPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PostBodyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
