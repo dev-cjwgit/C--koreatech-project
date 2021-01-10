@@ -1,6 +1,5 @@
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\bin\Debug\ProgramCore.dll
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\bin\Debug\ProgramCore.pdb
-E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\obj\Debug\ProgramCore.csprojAssemblyReference.cache
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\obj\Debug\ProgramCore.csproj.CoreCompileInputs.cache
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\obj\Debug\ProgramCore.dll
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\ProgramCore\obj\Debug\ProgramCore.pdb

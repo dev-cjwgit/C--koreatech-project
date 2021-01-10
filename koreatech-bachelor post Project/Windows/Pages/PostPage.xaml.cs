@@ -105,15 +105,15 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             {
                 list = null;
             }
-            string body = Strings.Split(Strings.Split(temp, "<div class=\"board-view-contents\">")[1], "</div>")[0].Trim() + "</div>";
+            string body = Strings.Split(Strings.Split(temp, "<div id=\"boardContents\">")[1], "</div>")[0];
 
             post.Title = title;
             post.Publisher = publisher;
             post.Time = time;
             post.Views = views;
             post.Attachment = list;
-            post.Bodys = "<html><HEAD><meta http-equiv='Content-Type' content='text/html;charset=UTF-8'></HEAD>" + body + "</html>";
-
+            post.Bodys = "<html><body>" + body + "</body></html>";
+            //post.Bodys = "<img src=\"http://24.media.tumblr.com/7995829378e93457f5dd3c10445ec00e/tumblr_mekn6vBZkI1rf089no1_500.gif\" height=\"100\"/>";
             return post;
         }
         private void PageInit()

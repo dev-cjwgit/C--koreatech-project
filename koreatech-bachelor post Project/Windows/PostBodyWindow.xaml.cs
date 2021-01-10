@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TheArtOfDev.HtmlRenderer.Core.Entities;
+using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace koreatech_bachelor_Post_Project.Windows
 {
@@ -29,7 +31,9 @@ namespace koreatech_bachelor_Post_Project.Windows
             PostBodyPublisherTextBox.DataContext = pagesrc.GetInstance();
             PostBodyTimeTextBox.DataContext = pagesrc.GetInstance();
             PostBodyViewsTextBox.DataContext = pagesrc.GetInstance();
-            PostBodyBodyWebBrowser.DataContext = pagesrc.GetInstance();
+            WebBrowser.DataContext = pagesrc.GetInstance();
+
+            //PostBodyBodyWebBrowser.DataContext = pagesrc.GetInstance();
             //PostBodyRichTextBox.DataContext = pagesrc.GetInstance();
         }
 
@@ -45,7 +49,7 @@ namespace koreatech_bachelor_Post_Project.Windows
 
         private void PostBodyWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var anim = new DoubleAnimation(0, 1, (Duration)TimeSpan.FromSeconds(1));
+            var anim = new DoubleAnimation(0, 1, (Duration)TimeSpan.FromSeconds(0.5));
             this.BeginAnimation(UIElement.OpacityProperty, anim);
 
         }
@@ -54,7 +58,7 @@ namespace koreatech_bachelor_Post_Project.Windows
         {
             Closing -= PostBodyWindow_Closing;
             e.Cancel = true;
-            var anim = new DoubleAnimation(0, (Duration)TimeSpan.FromSeconds(1));
+            var anim = new DoubleAnimation(0, (Duration)TimeSpan.FromSeconds(0.5));
             anim.Completed += (s, _) => this.Close();
             this.BeginAnimation(UIElement.OpacityProperty, anim);
         }
@@ -71,7 +75,6 @@ namespace koreatech_bachelor_Post_Project.Windows
                 this.WindowState = temp;
                 this.BeginAnimation(OpacityProperty, anim2);
             };
-
             this.BeginAnimation(OpacityProperty, anim1);
         }
     }

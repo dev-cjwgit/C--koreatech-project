@@ -3,14 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:koreatech_bachelor_Post_Project.Windows"
-        xmlns:src="clr-namespace:WebBrowserHelperDemo"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:wpf="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
         mc:Ignorable="d"
         Title="PostBodyWindow"
         Loaded="PostBodyWindow_Loaded" Closing="PostBodyWindow_Closing"
         Style="{StaticResource BasedWindowStyle}"
-        AllowsTransparency="False"
+        
 
         MinHeight="800" MinWidth="500"
         Height="800" Width="500">
@@ -78,12 +76,10 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0,0,0,1">
-                    <!--<RichTextBox x:Name="PostBodyRichTextBox"
-                     local:HtmlRichTextBoxBehavior.Text="{Binding Bodys}"
-                     IsDocumentEnabled="True"
-                     IsReadOnly="True" />-->
-                    <WebBrowser x:Name="PostBodyBodyWebBrowser" src:WebBrowserHelper.Body="{Binding Bodys}" Height="auto" Width="auto"/>
+                <wpf:HtmlPanel x:Name="WebBrowser" Grid.Row="2" Text="{Binding Bodys}"/>
+
+                <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0,1,0,0">
+                    
                 </Border>
             </Grid>
         </Grid>

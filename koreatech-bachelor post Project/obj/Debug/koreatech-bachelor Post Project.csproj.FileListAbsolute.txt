@@ -30,4 +30,7 @@ E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post P
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\bin\Debug\ProgramCore.pdb
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\obj\Debug\Windows\PostBodyWindow.g.cs
 E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\obj\Debug\Windows\PostBodyWindow.baml
-E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\bin\Debug\HtmlRenderer.dll
+E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\bin\Debug\HtmlRenderer.WPF.dll
+E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\bin\Debug\HtmlRenderer.pdb
+E:\개인 파일\프로그래밍\개인프로젝트\C#\koreatech-bachelor post Project\koreatech-bachelor Post Project\bin\Debug\HtmlRenderer.WPF.pdb

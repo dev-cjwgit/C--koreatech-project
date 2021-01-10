@@ -37,6 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.5\lib\net45\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.WPF, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.WPF.1.5.0.6\lib\net45\HtmlRenderer.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.7.1979, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.7\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -46,6 +52,8 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,14 +74,6 @@
     </ApplicationDefinition>
     <Compile Include="Binding\ObjectViewModel\PostBodyViewModel.cs" />
     <Compile Include="Binding\ObjectViewModel\PostListViewModel.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlCssParser.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlFromXamlConverter.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlLexicalAnalyzer.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlParser.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlSchema.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlTokenType.cs" />
-    <Compile Include="Windows\HtmlConverter\HtmlToXamlConverter.cs" />
-    <Compile Include="Windows\HtmlRichTextBoxBehavior.cs" />
     <Compile Include="Windows\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -83,7 +83,6 @@
     <Compile Include="Windows\PostBodyWindow.xaml.cs">
       <DependentUpon>PostBodyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WebBrowserHelper.cs" />
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -58,8 +58,9 @@ namespace koreatech_bachelor_Post_Project
             Closing -= Window_Closing;
             e.Cancel = true;
             var anim = new DoubleAnimation(0, (Duration)TimeSpan.FromSeconds(1));
-            anim.Completed += (s, _) => this.Close();
+            anim.Completed += (s, _) => { Environment.Exit(0); };
             this.BeginAnimation(UIElement.OpacityProperty, anim);
+            
         }
 
         #endregion
