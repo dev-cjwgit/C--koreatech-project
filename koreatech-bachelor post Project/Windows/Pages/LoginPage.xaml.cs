@@ -21,15 +21,15 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
             WinHttpRequest winhttp = new WinHttpRequest();
             winhttp.Open("POST", "https://portal.koreatech.ac.kr/sso/sso_login.jsp");
             winhttp.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            winhttp.Send("user_id=hyeonslove&user_pwd=%21%40ss4613486&RelayState=%2Findex.jsp&id=PORTAL&targetId=PORTAL");
+            winhttp.Send("user_id=id&user_pwd=pw&RelayState=%2Findex.jsp&id=PORTAL&targetId=PORTAL");
             winhttp.WaitForResponse();
             string WMONID = Strings.Split(Strings.Split(winhttp.GetAllResponseHeaders(), "Set-Cookie: ")[1], "; ")[0];
             string JSessionID = Strings.Split(Strings.Split(winhttp.GetAllResponseHeaders(), "Set-Cookie: ")[2], " Path")[0];
 
             winhttp.Open("POST", "https://portal.koreatech.ac.kr/ktp/login/checkLoginId.do");
             winhttp.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            winhttp.SetRequestHeader("Cookie", "WMONID=" + WMONID + "; JSESSIONID=" + JSessionID + " setNowLoginId=hyeonslove");
-            winhttp.Send("login_id=hyeonslove&login_pwd=!%40ss4613486&login_type=&login_empno=&login_certDn=&login_certChannel=");
+            winhttp.SetRequestHeader("Cookie", "WMONID=" + WMONID + "; JSESSIONID=" + JSessionID + " setNowLoginId=id");
+            winhttp.Send("login_id=id&login_pwd=pw&login_type=&login_empno=&login_certDn=&login_certChannel=");
             winhttp.WaitForResponse();
             if (Strings.Split(Strings.Split(winhttp.ResponseText, "\"result\":\"")[1], "\"")[0] == "true")
             {
@@ -50,9 +50,9 @@ namespace koreatech_bachelor_Post_Project.Windows.Pages
                 winhttp.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
                 winhttp.SetRequestHeader("Cookie", temp_cookie);
 
-                winhttp.Send("login_id=hyeonslove");
+                winhttp.Send("login_id=id");
                 winhttp.WaitForResponse();
-                re += " setNowLoginId=hyeonslove;";
+                re += " setNowLoginId=id;";
                 for (int i = 0; i < cookie_cnt; i++)
                 {
                     re += " " + cookies[i];
